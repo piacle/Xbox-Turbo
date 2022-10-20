@@ -18,7 +18,7 @@
    - auth decides whether you're using account credentials which is `accounts` or jwt tokens which are `tokens`
    - accounts decides what path the accounts are in Example: `C:\Users\Mike\projects\turbo\accounts.txt`
 ### 2.1 Configuration - Webhooks
-   - You can edit the \_\_init\_\_ method in `webhooks.py` to send a message after you turboed the tag
+   - You can edit the \_\_init\_\_ method in `webhook.py` to send a message after you turboed the tag
 ```py
 self.vars, self.webhooks = vars, [{"url":"https://discord.com/api/webhooks/Example/Example","method":"POST","headers":{},"params":{},"json":{"content":"@everyone","embeds":[{"title":"Successful Turbo!","color":None,"fields":[{"name":"`Gamertag`","value":f"`{vars['tag']}`","inline":True},{"name":"`XUID`","value":f"`{vars['new_account'][1]}`","inline":True},{"name":"`Requests`","value":f"`{vars['requests']}`","inline":True}]}],"attachments":[]},"sucess_code":204}]
 ```
