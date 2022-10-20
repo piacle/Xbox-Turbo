@@ -29,5 +29,4 @@ self.vars, self.webhooks = vars, [{"url":"https://discord.com/api/webhooks/Examp
    - Run it either clicking on main.py or `python3 main.py`
    - Type the gamertag you want to turbo and the amount of threads you want to use
 ### 5. Congrats!
-   - Your tag will most likely be in a circle jerk of autoclaimers now if its not ass because jailbroke fucked around with 'Z'
-
+   - Your tag will most likely be in a circle jerk of autoclaimers now if its not ass because you'll get fnc'd
