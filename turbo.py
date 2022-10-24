@@ -11,10 +11,10 @@ from webhook import Webhook
 
 class Turbo:
     def __init__(self) -> None:
-        self.reservation, self.claim, self.requests, self.ratelimits, self.errors, self.claimed, self.console, self.accounts, self.threads, self.tag, self.rd, self.cd, self.new_account, self.banner = "https://gamertag.xboxlive.com/gamertags/reserve", "https://accounts.xboxlive.com/users/current/profile/gamertag", 0, 0, 0, False, Console(), [], None, None, {}, {}, None, '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣤⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀\n⠀⠀⠀⠀⣠⠄⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀\n⠀⠀⠀⢰⡇⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠻⣿⣷⡀⠀\n⠀⠀⠀⢠⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⡙⣆⠈⠹⣿⡀\n⢀⣴⠞⣻⡟⠉⣿⣿⣿⣿⣿⣿⣻⡿⠿⣿⣿⣿⣿⣿⣿⣿⣾⣿⣇\n⠘⠁⢀⣿⠁⢠⣇⣸⣧⣿⣿⣿⠟⣿⣦⣿⡟⠿⣿⣿⢛⣿⣿⣿⣿\n⠀⠀⢸⣿⢀⣼⣿⣿⣿⣿⣿⣯⣤⡼⢿⣿⠇⠀⠈⠙⣍⣩⣽⡿⡋\n⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⡇⣠⣤⣶⣿⡶⠀⠀⠀⠸⣿⣿⢡⢸\n⠀⠀⠀⠈⢿⣿⣿⠋⠂⢄⣹⣏⠉⠻⢿⡿⠇⠀⠀⠀⠀⠈⠁⠈⡇\n⠀⠀⠀⠀⠀⠙⣿⡄⠀⠈⠈⠻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡸⠀\n⠀⠀⠀⠀⠀⠀⠀⠉⠻⢶⢴⡇⠀⣀⠀⠀⠀⠀⠀⠀⠀⢀⠔⠁⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡿⠀⠈⠛⠶⣶⣀⠀⠐⠚⠁⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⠉⠂⢄⡀⠀⢸⠀⠁⠂⢄⠀⠀⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⢀⡠⣾⣿⣠⣴⣶⣌⠓⠂⠤⢶⣿⣷⡷⣄⠀⠀\n⠀⠀⠀⠀⠀⠀⣠⠏⠀⠹⣿⣿⣿⣿⣿⣿⣦⣄⠈⣿⣿⣿⣌⢳⡀'
+        self.reservation, self.claim, self.requests, self.ratelimits, self.errors, self.claimed, self.console, self.accounts, self.threads, self.tag, self.rd, self.cd, self.new_account, self.banner = "https://gamertag.xboxlive.com/gamertags/reserve", "https://accounts.xboxlive.com/users/current/profile/gamertag", 0, 0, 0, False, Console(), [], None, None, {}, {}, None, '\n⠀⠀⠀⠀⢀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⣠⠾⠛⠶⣄⢀⣠⣤⠴⢦⡀⠀⠀⠀⠀\n⠀⠀⠀⢠⡿⠉⠉⠉⠛⠶⠶⠖⠒⠒⣾⠋⠀⢀⣀⣙⣯⡁⠀⠀⠀⣿⠀⠀⠀⠀\n⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⢸⡏⠀⠀⢯⣼⠋⠉⠙⢶⠞⠛⠻⣆⠀⠀⠀\n⠀⠀⠀⢸⣧⠆⠀⠀⠀⠀⠀⠀⠀⠀⠻⣦⣤⡤⢿⡀⠀⢀⣼⣷⠀⠀⣽⠀⠀⠀\n⠀⠀⠀⣼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠙⢏⡉⠁⣠⡾⣇⠀⠀⠀\n⠀⠀⢰⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠋⠉⠀⢻⡀⠀⠀\n⣀⣠⣼⣧⣤⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⠀⠀⠐⠖⢻⡟⠓⠒\n⠀⠀⠈⣷⣀⡀⠀⠘⠿⠇⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠿⠟⠀⠀⠀⠲⣾⠦⢤⠀\n⠀⠀⠋⠙⣧⣀⡀⠀⠀⠀⠀⠀⠀⠘⠦⠼⠃⠀⠀⠀⠀⠀⠀⠀⢤⣼⣏⠀⠀⠀\n⠀⠀⢀⠴⠚⠻⢧⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⠞⠉⠉⠓⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠛⠶⠶⠶⣶⣤⣴⡶⠶⠶⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀\n'
 
     async def success(self, opttext=""):
-        system("cls||clear")
+        [system("cls||clear") for _ in range(10)]
         self.console.print(f"[bold grey93]{self.banner}[/bold grey93]\n[[bold grey85]*[/bold grey85]] Request(s): [bold grey85]{self.requests}[/bold grey85] | R/s: [bold grey85]{self.rn}[/bold grey85] | Ratelimit(s): [bold grey85]{self.ratelimits}[/bold grey85] | Errors: [bold grey85]{self.errors}[/bold grey85] | Threads: [bold grey85]{self.threads}[/bold grey85]\n\n[[bold grey85]*[/bold grey85]] Claimed: {self.tag}\n[[bold grey85]*[/bold grey85]] Email: {self.new_account[0]}\n[[bold grey85]*[/bold grey85]] XUID: {self.new_account[1]}\n{opttext}", end="​"*24+"\n", highlight=False)
         try:
             await Webhook(vars(self)).push()
