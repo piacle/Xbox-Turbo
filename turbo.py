@@ -83,7 +83,7 @@ class Turbo:
 
     async def reserve(self):
         async with ClientSession() as session:
-            while self.claimed is not True:
+            while self.claimed is False:
                 try:
                     for token, xuid in self.accounts:
                         resid = str(randint(xuid*2, xuid*4))
