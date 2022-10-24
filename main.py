@@ -73,8 +73,7 @@ class Runner:
         system("cls||clear")
         self.console.print(f"[bold grey93]{self.turbo.banner}[/bold grey93]")
         Thread(target=run, daemon=True, args=[self.turbo.info()]).start()
-        for _ in range(self.turbo.threads):
-            Thread(target=run, daemon=True, args=[self.turbo.reserve()]).start()
+        [Thread(target=run, daemon=True, args=[self.turbo.reserve()]).start() for _ in range(self.turbo.threads)]
         while True: 
             try:
                 pass
