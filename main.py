@@ -67,7 +67,7 @@ class Runner:
         if len(self.turbo.accounts) == 0:
             self.console.print(f"[[bold grey85]*[/bold grey85]] Get accounts then use this.", highlight=None)
             input()
-            self.exit(-1)
+            exit(-1)
         self.console.print(f"[[bold grey85]+[/bold grey85]] Loaded {len(self.turbo.accounts)} account(s)\n[[bold grey85]*[/bold grey85]] Failed Loading: {xD} account(s)", highlight=False)
         input("Press enter whenever your ready...")
         system("cls||clear")
