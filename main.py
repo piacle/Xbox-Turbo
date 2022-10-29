@@ -2,9 +2,10 @@ from threading import Thread
 from json import load, dumps
 from re import match
 from os import system, path
-from asyncio import run
+from asyncio import run, sleep
 from auth import Auth
 from turbo import Turbo
+from concurrent.futures import ThreadPoolExecutor
 configuration = load(open("configuration.json"))
 system("cls||clear")
 def inpppppppppppp(key, console):
@@ -36,6 +37,8 @@ class Runner:
             self.console.print("\n".join(errors) + f"\n[[bold grey93]*[/bold grey93]] Edit configuration.json to fix errors\nPress enter to exit...", highlight=False)
             input()
             exit(-1)
+        aU = Auth(self.accounts)
+        a = len(open(self.accounts).read().splitlines())
         if self.turbo.tag == None:
             nigga = 12 if self.gamertagSystem == "new" else 15
             self.console.print(f"[bold grey93]{self.turbo.banner}[/bold grey93]\n[[bold grey85]*[/bold grey85]] Gamertag: ", end="", highlight=None)
@@ -50,10 +53,9 @@ class Runner:
                     self.console.print(f"[[bold red]-[/bold red]] Invaild Gamertag", highlight=None)
                     await self.start()
                 else:
-                    self.turbo.tag = temp12831
-                    temp12831=None;del temp12831
+                    self.turbo.tag = temp12831;temp12831=None;del temp12831
                     self.turbo.rd, self.turbo.cd = {"classicGamertag": self.turbo.tag, "targetGamertagFields": "classicGamertag"} if nigga == 15 else {"gamertag": self.turbo.tag, "targetGamertagFields": "gamertag"}, {"gamertag": {"classicGamertag": self.turbo.tag}, "preview": False, "useLegacyEntitlement": False} if nigga == 15 else {"gamertag": {"gamertag": self.turbo.tag, "gamertagSuffix": "", "classicGamertag": self.turbo.tag}, "preview": False, "useLegacyEntitlement": False}
-                
+        
         if self.turbo.threads == None:
             self.console.print(f"[[bold grey85]*[/bold grey85]] Threads: ", end="", highlight=None)
             try:
@@ -62,13 +64,16 @@ class Runner:
                 system("cls||clear")
                 self.console.print(f"[[bold red]*[/bold red]] {e}",highlight=None)
                 await self.start()
-        with self.console.status("[bold grey85]Loading accounts[/bold grey85]", spinner='material'):
-            self.turbo.accounts, xD = await Auth(self.accounts).combolist() if self.auth=="accounts" else await Auth(self.accounts).jwt()
+        
+        f = ThreadPoolExecutor().submit(run, aU.combolist() if self.auth=="accounts" else aU.jwt())
+        while aU.count != a:
+            self.console.print(f"[[bold grey85]*[/bold grey85]] Loaded accounts: [[bold grey85]{aU.count}[/bold grey85]/[bold grey85]{a}[/bold grey85]]{' '*a}", end="\r", highlight=None)
+        self.turbo.accounts, xD = f.result()
         if len(self.turbo.accounts) == 0:
-            self.console.print(f"[[bold grey85]*[/bold grey85]] Get accounts then use this.", highlight=None)
+            self.console.print(f"[[bold grey85]*[/bold grey85]] Get{' VAILD' if xD > 0 else ''} {'accounts' if self.auth == 'accounts' else 'tokens'} then use this.{'       '*a}", highlight=None)
             input()
-            exit(-1)
-        self.console.print(f"[[bold grey85]+[/bold grey85]] Loaded {len(self.turbo.accounts)} account(s)\n[[bold grey85]*[/bold grey85]] Failed Loading: {xD} account(s)", highlight=False)
+            self.exit(-1)
+        self.console.print(f"[[bold grey85]+[/bold grey85]] Loaded {len(self.turbo.accounts)} account(s){'        '*a}\n[[bold grey85]*[/bold grey85]] Failed Loading: {xD} account(s)\n", highlight=False)
         input("Press enter whenever your ready...")
         system("cls||clear")
         self.console.print(f"[bold grey93]{self.turbo.banner}[/bold grey93]")
