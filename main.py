@@ -2,7 +2,7 @@ from threading import Thread
 from json import load, dumps
 from re import match
 from os import system, path
-from asyncio import run, sleep
+from asyncio import run
 from auth import Auth
 from turbo import Turbo
 from concurrent.futures import ThreadPoolExecutor
