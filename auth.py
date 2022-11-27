@@ -1,3 +1,4 @@
+#mobile
 # i skid this  | https://github.com/tropicbliss/xboxlive-auth/blob/main/src/xbox.rs
 from re import search
 from urllib.parse import unquote
