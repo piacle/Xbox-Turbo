@@ -20,7 +20,7 @@ class Runner:
     def __init__(self) -> None:
         self.turbo = Turbo()
         self.console, self.vaild, self.gamertagSystem, self.auth, self.accounts = self.turbo.console, {"gamertagSystem": ["new", "old"], "auth": ["accounts", "tokens"]}, inpppppppppppp('gamertagSystem', self.console) if not configuration.get('gamertagSystem') else configuration["gamertagSystem"], inpppppppppppp('auth', self.console) if not configuration.get('auth') else configuration["auth"], inpppppppppppp('accounts', self.console) if not configuration.get('accounts') else configuration["accounts"]
-
+        self.limit = 12 if self.gamertagSystem == "new" else 15
     async def check(self):
         errors = []
         for key in self.vaild:
@@ -40,10 +40,10 @@ class Runner:
         aU = Auth(self.accounts)
         a = len(open(self.accounts).read().splitlines())
         if self.turbo.tag == None:
-            nigga = 12 if self.gamertagSystem == "new" else 15
+            
             self.console.print(f"[bold grey93]{self.turbo.banner}[/bold grey93]\n[[bold grey85]*[/bold grey85]] Gamertag: ", end="", highlight=None)
             temp12831 = input().strip()
-            if len(temp12831) > nigga:
+            if len(temp12831) > self.limit:
                 system("cls||clear")
                 self.console.print(f"[[bold red]-[/bold red]] Gamertag is greater than {nigga}",highlight=None)
                 await self.start()
@@ -68,12 +68,12 @@ class Runner:
         f = ThreadPoolExecutor().submit(run, aU.combolist() if self.auth=="accounts" else aU.jwt())
         while aU.count != a:
             self.console.print(f"[[bold grey85]*[/bold grey85]] Loaded accounts: [[bold grey85]{aU.count}[/bold grey85]/[bold grey85]{a}[/bold grey85]]{' '*a}", end="\r", highlight=None)
-        self.turbo.accounts, xD = f.result()
+        self.turbo.accounts, failed = f.result()
         if len(self.turbo.accounts) == 0:
-            self.console.print(f"[[bold grey85]*[/bold grey85]] Get{' VAILD' if xD > 0 else ''} {'accounts' if self.auth == 'accounts' else 'tokens'} then use this.{'       '*a}", highlight=None)
+            self.console.print(f"[[bold grey85]*[/bold grey85]] Get{' VAILD' if failed > 0 else ''} {'accounts' if self.auth == 'accounts' else 'tokens'} then use this.{'       '*a}", highlight=None)
             input()
             self.exit(-1)
-        self.console.print(f"[[bold grey85]+[/bold grey85]] Loaded {len(self.turbo.accounts)} account(s){'        '*a}\n[[bold grey85]*[/bold grey85]] Failed Loading: {xD} account(s)\n", highlight=False)
+        self.console.print(f"[[bold grey85]+[/bold grey85]] Loaded {len(self.turbo.accounts)} account(s){'        '*a}\n[[bold grey85]*[/bold grey85]] Failed Loading: {failed} account(s)\n", highlight=False)
         input("Press enter whenever your ready...")
         system("cls||clear")
         self.console.print(f"[bold grey93]{self.turbo.banner}[/bold grey93]")
