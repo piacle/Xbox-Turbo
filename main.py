@@ -45,7 +45,7 @@ class Runner:
             temp12831 = input().strip()
             if len(temp12831) > self.limit:
                 system("cls||clear")
-                self.console.print(f"[[bold red]-[/bold red]] Gamertag is greater than {nigga}",highlight=None)
+                self.console.print(f"[[bold red]-[/bold red]] Gamertag is greater than {self.limit}",highlight=None)
                 await self.start()
             else:
                 if not match("[a-zA-Z0-9 ]", temp12831) or temp12831[0] in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] or temp12831 == "": 
@@ -54,7 +54,7 @@ class Runner:
                     await self.start()
                 else:
                     self.turbo.tag = temp12831;temp12831=None;del temp12831
-                    self.turbo.rd, self.turbo.cd = {"classicGamertag": self.turbo.tag, "targetGamertagFields": "classicGamertag"} if nigga == 15 else {"gamertag": self.turbo.tag, "targetGamertagFields": "gamertag"}, {"gamertag": {"classicGamertag": self.turbo.tag}, "preview": False, "useLegacyEntitlement": False} if nigga == 15 else {"gamertag": {"gamertag": self.turbo.tag, "gamertagSuffix": "", "classicGamertag": self.turbo.tag}, "preview": False, "useLegacyEntitlement": False}
+                    self.turbo.rd, self.turbo.cd = {"classicGamertag": self.turbo.tag, "targetGamertagFields": "classicGamertag"} if self.limit == 15 else {"gamertag": self.turbo.tag, "targetGamertagFields": "gamertag"}, {"gamertag": {"classicGamertag": self.turbo.tag}, "preview": False, "useLegacyEntitlement": False} if self.limit == 15 else {"gamertag": {"gamertag": self.turbo.tag, "gamertagSuffix": "", "classicGamertag": self.turbo.tag}, "preview": False, "useLegacyEntitlement": False}
         
         if self.turbo.threads == None:
             self.console.print(f"[[bold grey85]*[/bold grey85]] Threads: ", end="", highlight=None)
