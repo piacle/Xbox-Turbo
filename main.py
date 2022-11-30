@@ -40,7 +40,6 @@ class Runner:
         aU = Auth(self.accounts)
         a = len(open(self.accounts).read().splitlines())
         if self.turbo.tag == None:
-            
             self.console.print(f"[bold grey93]{self.turbo.banner}[/bold grey93]\n[[bold grey85]*[/bold grey85]] Gamertag: ", end="", highlight=None)
             temp12831 = input().strip()
             if len(temp12831) > self.limit:
