@@ -1,7 +1,7 @@
 # The best 1 R/S Turbo.
 # ⚠ WARNING: You'll have a high chance of getting your name fnc'd (forced name change) or banned using this tool! ⚠
 # Version: [Python 3.8](https://www.python.org/downloads/release/python-380/)
-# [Preview of turbo](https://streamable.com/9dgym0) | Contact [lain#8989](https://discord.com/users/1032062115973976125) for more info
+# [Preview of turbo](https://streamable.com/9dgym0) | Contact [xz#8989](https://discord.com/users/1032062115973976125) for more info
 ## How to use this tool
 ### 1. Get accounts
   - This is the most obvious step
