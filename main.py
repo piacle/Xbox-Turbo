@@ -71,7 +71,7 @@ class Runner:
         if len(self.turbo.accounts) == 0:
             self.console.print(f"[[bold grey85]*[/bold grey85]] Get{' VAILD' if failed > 0 else ''} {'accounts' if self.auth == 'accounts' else 'tokens'} then use this.{'       '*a}", highlight=None)
             input()
-            self.exit(-1)
+            exit(-1)
         self.console.print(f"[[bold grey85]+[/bold grey85]] Loaded {len(self.turbo.accounts)} account(s){'        '*a}\n[[bold grey85]*[/bold grey85]] Failed Loading: {failed} account(s)\n", highlight=False)
         input("Press enter whenever your ready...")
         system("cls||clear")
