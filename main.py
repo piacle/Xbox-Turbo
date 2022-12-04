@@ -83,4 +83,5 @@ class Runner:
                 pass
             except (KeyboardInterrupt, EOFError):
                 exit(0)
-run(Runner().start())
+if __name__ == '__main__':
+    run(Runner().start())
