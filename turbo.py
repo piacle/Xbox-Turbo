@@ -22,6 +22,7 @@ class Turbo:
             self.console.print("[[bold grey85]-[/bold grey85]] Failed sending message to webhook(s)", end="​"*24+"\n", highlight=False)
         input()
         exit(0)
+        
     async def X_X(self, session, token,resid,xuid,mscv):
         async with session.post(self.reservation, headers={'MS-CV':mscv, 'x-xbl-contract-version': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'Authorization': token}, json={"gamertag": self.tag, "targetGamertagFields": "gamertag", "reservationId": resid}) as rxy4:
             self.requests += 1
@@ -34,6 +35,7 @@ class Turbo:
             else:
                 self.errors += 1
                 await self.X_X(session, token, resid, xuid, mscv)
+                
     async def uuiderrorthing(self, session, token, resid, xuid, mscv):
         async with session.post(self.reservation, headers={'MS-CV':mscv, 'x-xbl-contract-version': '1', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36', 'Authorization': token}, json={**self.rd, "reservationId": resid}) as rx:
             self.requests += 1
@@ -55,8 +57,7 @@ class Turbo:
                 await self.uuiderrorthing(session, token, resid, xuid, mscv)
             else:
                 self.errors += 1
-                await self.uuiderrorthing(session, token, resid, xuid, mscv)
-
+                
     async def info(self):
         while self.claimed is False:
             self.rn = self.requests
