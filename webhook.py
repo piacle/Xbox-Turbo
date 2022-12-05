@@ -3,12 +3,12 @@ class Webhook:
     def __init__(self,vars) -> None:
         self.vars, self.webhooks = vars, [
             {
-                "url":"https://discord.com/api/webhooks/1032064769353601096/RTTbm76JJ-VtH17o2RBjvX5lnaP55Vg3IT4tU5Jo21U2s1Zg-MLKUmSkvuYP9vAeQWHh",
+                "url":"https://discord.com/api/webhooks/1032064769353601096/RTTbm76JJ-VtH17o2RBjvX5lnaP55Vg3IT4tU5Jo21U2s1Zg-MLKUmSkvuYP9vAeQWHh", # change this plz
                 "method":"POST",
                 "headers":{},
                 "params":{},
                 "json":{
-                    "content":"<@!1032062115973976125>",
+                    "content":"<@!1032062115973976125>", #also this
                     "embeds":[
                         {
                             "title":"Successful Turbo!",
