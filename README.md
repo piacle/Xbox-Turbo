@@ -1,9 +1,7 @@
 # The best 1 R/S Turbo.
-# rewriting this atleast in interface so its not ass ill remove this when done
-
 # ⚠ WARNING: You'll have a high chance of getting your name fnc'd (forced name change) or banned using this tool! ⚠
 # Version: [Python 3.8](https://www.python.org/downloads/release/python-380/)
-# [Preview of turbo](https://streamable.com/9dgym0) | Contact [kanye#8989](https://discord.com/users/1032062115973976125) for more info
+# [Preview of turbo](https://streamable.com/9dgym0) | Contact: [discord](https://discord.com/users/1032062115973976125) | [telegram](https://t.me/deranging) for more info
 ## How to use this tool
 ### 1. Get accounts
   - This is the most obvious step
@@ -20,7 +18,7 @@
    - auth decides whether you're using account credentials which is `accounts` or jwt tokens
    - accounts decides what path the accounts are in Example: `C:\Users\Mike\projects\turbo\accounts.txt`
 ### 2.1 Configuration - Webhooks
-   - You can edit the \_\_init\_\_ method in `webhook.py` to send a message after you turboed the tag
+   - You can edit the \_\_init\_\_ method in `util/webhook.py` to send a message after you turboed the tag
 ```py
 self.vars, self.webhooks = vars, [{"url":"https://discord.com/api/webhooks/Example/Example","method":"POST","headers":{},"params":{},"json":{"content":"@everyone","embeds":[{"title":"Successful Turbo!","color":None,"fields":[{"name":"`Gamertag`","value":f"`{vars['tag']}`","inline":True},{"name":"`XUID`","value":f"`{vars['new_account'][1]}`","inline":True},{"name":"`Requests`","value":f"`{vars['requests']}`","inline":True}]}],"attachments":[]},"sucess_code":204}]
 ```

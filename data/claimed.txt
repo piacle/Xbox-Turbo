@@ -1,0 +1,1 @@
+[date] -> [xuid] | [reservation] | [email] -> [tag]
