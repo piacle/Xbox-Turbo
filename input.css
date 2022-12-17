@@ -1,0 +1,10 @@
+Screen {
+    background: #000;
+    align: center middle;
+}
+
+#inp {
+    border: solid #fff;
+    background: rgba(0,0,0,0);
+    width: 25;
+}
