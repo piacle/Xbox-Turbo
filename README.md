@@ -6,7 +6,7 @@
 ### 1. Get accounts
   - This is the most obvious step
 ### 2. Configuration
-   - Edit the configuration.json file to something like this
+   - Edit the data/configuration.json file to something like this
 ```json
 {
     "gamertagSystem": "old",
