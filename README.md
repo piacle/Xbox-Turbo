@@ -16,7 +16,7 @@
 ```
    - gamertagSystem decides whether you use the classic gamertag system which is `old` or the new one which is `new` 
    - auth decides whether you're using account credentials which is `accounts` or jwt tokens
-   - accounts decides what path the accounts are in Example: `C:\Users\Mike\projects\turbo\accounts.txt`
+   - accounts decides what path the accounts are in Example: `C:\Users\Mike\turbo\data\accounts.txt`
 ### 2.1 Configuration - Webhooks
    - You can edit the \_\_init\_\_ method in `util/webhook.py` to send a message after you turboed the tag
 ```py
