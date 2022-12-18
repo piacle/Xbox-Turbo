@@ -136,7 +136,7 @@ class Runner:
             input()
             exit(-1)
         self.console.print(
-            f"{center_y()}[[bold grey85]+[/bold grey85]] Loaded {len(self.turbo.accounts)} account(s)\n[[bold grey85]*[/bold grey85]] Failed Loading: {failed} account(s)\nPress enter to start.\n\n{self.turbo.accounts}", highlight=False, justify='center')
+            f"{center_y()}[[bold grey85]+[/bold grey85]] Loaded {len(self.turbo.accounts)} account(s)\n[[bold grey85]*[/bold grey85]] Failed Loading: {failed} account(s)\nPress enter to start.", highlight=False, justify='center')
         self.console.input()
         self.console.clear()
         self.console.print(
