@@ -164,8 +164,9 @@ class Turbo:
                                                                                                'Authorization': token},
                                                                     json={**self.rd, "reservationId": resid}) as r:
                             self.requests += 1
-                            if (r.status == 200 and (await r.json())["classicGamertag"] == self.tag):
-                                await self.claimgt(session, token, resid, xuid, r.headers["MS-CV"])
+                            if r.status == 200:
+                                if (await r.json())["classicGamertag"] == self.tag:
+                                    await self.claimgt(session, token, resid, xuid, r.headers["MS-CV"])
                             elif r.status == 429:
                                 self.ratelimits += 1
                             else:
