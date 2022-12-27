@@ -12,7 +12,7 @@ def center_x(text: str = None) -> str:
 
 
 def center_y(text: str = None, return_only_lines: bool = True) -> str:
-    newlines = "\n".join(['' for _ in range(get_terminal_size().lines // 2)])
+    newlines = "\n".join(['' for _ in range(get_terminal_size().lines // 4)])
     if return_only_lines:
         return newlines
     else:
